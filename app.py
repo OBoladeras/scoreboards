@@ -9,62 +9,64 @@ app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 conf = Config().load()
 
-if not os.path.exists('data.json'):
-    with open('data.json', 'w') as f:
+if not os.path.exists("data.json"):
+    with open("data.json", "w") as f:
         json.dump({}, f)
 
 
-@app.before_request
-def before_request():
-    session['sport'] = conf.sport
+def createID():
+    return str(uuid.uuid4())
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route("/", methods=["GET", "POST"])
 def index():
-    if request.method == 'POST':
+    if request.method == "POST":
         id = str(uuid.uuid4())
-        with open('data.json', 'r') as f:
-            jsonData = json.load(f)
-            jsonData[id] = {
-                "player1": {
-                    "name": "Player 1",
-                            "points": "0",
-                            "sets": [0, 0, 0]
-                },
-                "player2": {
-                    "name": "Player 2",
-                    "points": "0",
-                    "sets": [0, 0, 0]
-                }
-            }
 
-        with open('data.json', 'w') as f:
-            json.dump(jsonData, f)
+        return redirect(url_for("match", id=id))
 
-        return redirect(url_for('match', id=id))
+    return render_template("index.html")
 
-    return render_template('index.html')
+
+@app.route("/sport/<sport>")
+def tennis_padel(sport):
+    return f"<script>window.location.href = '/sport/{sport}/{createID()}';</script>"
 
 
 # -----------------------------
 #   Tennis
 #   Padel
 # -----------------------------
-@app.route('/sport/tennis-padel/<id>')
-def match(id):
-    return render_template(f'{conf.sport}/backend.html', id=id)
+@app.route("/sport/tennis-padel/<id>")
+def tennis_padel_backend(id):
+    return render_template(f"{conf.sport}/backend.html", id=id)
 
 
-@app.route('/sport/tennis-padel/<id>/show')
-def show(id):
-    return render_template(f'{conf.sport}/frontend.html', id=id)
+@app.route("/sport/tennis-padel/<id>/show")
+def tennis_padel_frontend(id):
+    return render_template(f"{conf.sport}/frontend.html", id=id)
 
 
-# API
-@app.route('/api/<sport>/<id>', methods=['GET', 'POST'])
+# -----------------------------
+#  F1
+# -----------------------------
+@app.route("/sport/f1/<id>")
+def f1(id):
+    return render_template(f"f1/backend.html", id=id)
+
+
+@app.route("/sport/f1/<id>/show")
+def f1_frontend(id):
+    return render_template(f"f1/frontend.html", id=id)
+
+
+# -----------------------------
+#   API
+# -----------------------------
+@app.route("/api/<sport>/<id>", methods=["GET", "POST"])
 def get(sport, id):
     # Check if sport exists in data.json
-    with open('data.json', 'r') as f:
+    with open("data.json", "r") as f:
         try:
             jsonData = json.load(f)
         except json.JSONDecodeError:
@@ -80,25 +82,25 @@ def get(sport, id):
                 exit()
             jsonData[sport][id] = base
 
-    with open('data.json', 'w') as f:
+    with open("data.json", "w") as f:
         json.dump(jsonData, f)
 
-    if request.method == 'GET':
-        with open('data.json', 'r') as f:
+    if request.method == "GET":
+        with open("data.json", "r") as f:
             jsonData = json.load(f)
             return jsonify(jsonData[sport][id])
-    elif request.method == 'POST':
+    elif request.method == "POST":
         data = request.get_json()
 
-        with open('data.json', 'r') as f:
+        with open("data.json", "r") as f:
             jsonData = json.load(f)
             jsonData[sport][id] = data
 
-        with open('data.json', 'w') as f:
+        with open("data.json", "w") as f:
             json.dump(jsonData, f)
 
         return jsonify(data)
 
 
-if __name__ == '__main__':
-    app.run(host=conf.host, port=conf.port, debug=False)
+if __name__ == "__main__":
+    app.run(host=conf.host, port=conf.port, debug=conf.debug)

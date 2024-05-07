@@ -11,7 +11,7 @@ set2_j2 = document.getElementById('set2_j2');
 set3_j2 = document.getElementById('set3_j2');
 
 function update() {
-    fetch('/api/' + sport + '/' + id, {
+    fetch('/api/tennis-padel/' + id, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' },
     }).catch(function (error) {

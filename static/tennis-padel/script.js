@@ -2,7 +2,7 @@ var currentSet = 1;
 var scoreboard = {};
 
 function pull() {
-    fetch('/api/' + sport + '/' + id, {
+    fetch('/api/tennis-padel/' + id, {
         method: 'get',
         headers: { 'Content-Type': 'application/json' },
     }).catch(function (error) {
@@ -15,7 +15,7 @@ function pull() {
 }
 
 function push() {
-    fetch('/api/' + sport + '/' + id, {
+    fetch('/api/tennis-padel/' + id, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
