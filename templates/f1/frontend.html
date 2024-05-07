@@ -5,6 +5,8 @@
     <title>F1</title>
 
     <link rel="stylesheet" href="/static/f1/frontend.css">
+
+    <script>id = "{{ id }}"</script>
 </head>
 
 <body>
@@ -17,46 +19,10 @@
             <span id="timer"></span>
         </div>
 
-        <div id="grid">
-            {% for driver in pilots %}
-            <div class="driver">
-                <h2 class="position">1</h2>
-                <img src="https://logodownload.org/wp-content/uploads/2014/09/nissan-logo-1.png" alt="logo">
-                <h2>ROS</h2>
-                <h3>+12.018</h3>
-            </div>
-            {% endfor %}
-        </div>
-
-
+        <div id="grid"></div>
     </div>
+
+    <script src="/static/f1/frontend.js"></script>
 </body>
-
-
-<script>
-    var targetTime = new Date();
-    targetTime.setHours(targetTime.getHours() + 1);
-
-    var timerInterval = setInterval(updateTimer, 1000);
-
-    function updateTimer() {
-        var currentTime = new Date();
-
-        var remainingTime = targetTime - currentTime;
-
-        if (remainingTime <= 0) {
-            clearInterval(timerInterval);
-            document.getElementById("timer").textContent = "Time's up!";
-            return;
-        }
-
-        var hours = Math.floor(remainingTime / (1000 * 60 * 60));
-        var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-        document.getElementById("timer").textContent = minutes + ":" + seconds;
-    }
-</script>
-
 
 </html>

@@ -55,18 +55,31 @@ img {
     padding-bottom: 0;
     margin-top: 0;
     margin-bottom: 0;
+
+    text-align: left;
 }
 
 .driver .position {
     color: #ffffff80;
-    min-width: 1.5rem;
+    width: 15%;
 }
 
 .driver img {
-    width: 2rem;
+    width: 15%;
+    text-align: center;
+    align-self: center;
 }
 
 .driver h3 {
     width: 40%;
     text-align: right;
+}
+
+.driver .name {
+    padding-left: 10%;
+}
+
+.driver .name,
+.driver .time {
+    width: 35%;
 }
