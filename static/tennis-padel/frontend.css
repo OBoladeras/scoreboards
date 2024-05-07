@@ -1,0 +1,54 @@
+body {
+    margin: 0%;
+    padding: 0%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    font-size: 5.5rem;
+}
+
+.set,
+.points,
+.name {
+    padding: 50px;
+    margin: 10px;
+
+    width: 50px;
+    height: 50px;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.name {
+    padding: 50px;
+    margin: 10px;
+    width: 350px;
+    height: 50px;
+
+    font-size: 4rem;
+    color: black;
+
+    background-color: var(--primary1);
+}
+
+.points {
+    background-color: var(--primary2);
+}
+
+.set {
+    background-color: var(--primary3);
+}
+
+.player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

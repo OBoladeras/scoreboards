@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scoreboard - Backend</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/{{session.sport}}/backend.css">
+
+    <script>id = "{{ id }}";</script>
+    <script>sport = "{{ session.sport }}";</script>
+    <script type="text/javascript" src="/static/{{session.sport}}/script.js"></script>
+</head>
+
+<body>
+    <br>
+    <button onclick="window.open(window.location.href + '/show', '_blank')">Open Scoreboard</button>
+    <br>
+    <table>
+        <tr>
+            <th>Jugador</th>
+            <th>Set 1</th>
+            <th>Set 2</th>
+            <th>Set 3</th>
+            <th>Puntos</th>
+        </tr>
+        <tr>
+            <td id="player1"></td>
+            <td id="marcador_set1_j1">0</td>
+            <td id="marcador_set2_j1">0</td>
+            <td id="marcador_set3_j1">0</td>
+            <td id="marcador_punto_j1">0</td>
+        </tr>
+        <tr>
+            <td id="player2"></td>
+            <td id="marcador_set1_j2">0</td>
+            <td id="marcador_set2_j2">0</td>
+            <td id="marcador_set3_j2">0</td>
+            <td id="marcador_punto_j2">0</td>
+        </tr>
+    </table>
+
+    <div class="container">
+        <div class="setDiv">
+            <h1>Puntos</h1>
+            <div class="playersDiv">
+                <div class="block">
+                    <h2>J1:
+                        <span id="pointsJ1">0</span>
+                    </h2>
+                    <div class="buttonsDiv">
+                        <button onclick="changePoitns('pointsJ1', false)">-</button>
+                        <button onclick="changePoitns('pointsJ1', true)">+</button>
+                    </div>
+                </div>
+                <div class="block">
+                    <h2>J2:
+                        <span id="pointsJ2">0</span>
+                    </h2>
+                    <div class="buttonsDiv">
+                        <button onclick="changePoitns('pointsJ2', false)">-</button>
+                        <button onclick="changePoitns('pointsJ2', true)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="setDiv">
+            <h1>Set
+                <span id="set">1</span>
+            </h1>
+            <div class="buttonsDiv">
+                <button onclick="workingSet(false)">-</button>
+                <button onclick="workingSet(true)">+</button>
+            </div>
+            <div class="playersDiv">
+                <div class="block">
+                    <h2>J1:
+                        <span id="setsJ1">0</span>
+                    </h2>
+                    <div class="buttonsDiv">
+                        <button onclick="changeSet('setsJ1', false)">-</button>
+                        <button onclick="changeSet('setsJ1', true)">+</button>
+                    </div>
+                </div>
+                <div class="block">
+                    <h2>J2:
+                        <span id="setsJ2">0</span>
+                    </h2>
+                    <div class="buttonsDiv">
+                        <button onclick="changeSet('setsJ2', false)">-</button>
+                        <button onclick="changeSet('setsJ2', true)">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h2>Jugador 1</h2>
+    <input type="text" id="player1Input" onchange="updatePlayers()">
+    <h2>Jugador 2</h2>
+    <input type="text" id="player2Input" onchange="updatePlayers()">
+    <br>
+    <button onclick="push()">Aplicar cambios</button>
+    <div class="spacer"></div>
+
+    <script>
+        pull();
+        setTimeout(function () {
+            update(true);
+        }, 500);
+    </script>
+</body>
+
+</html>
