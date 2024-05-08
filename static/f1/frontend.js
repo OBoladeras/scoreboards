@@ -87,6 +87,8 @@ fetch('/api/f1/' + id, {
         var targetTime = new Date();
         targetTime.setHours(hours);
         targetTime.setMinutes(minutes);
+        targetTime.setSeconds(0);
+        targetTime.setMilliseconds(0);
 
         updateTimer(targetTime);
     })

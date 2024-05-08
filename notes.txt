@@ -2,4 +2,3 @@ Add succes on update on tennis
 
 F1 reload automatic
 F1 change positions
-F1 check timer that seconds dont set well
