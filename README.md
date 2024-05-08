@@ -29,7 +29,8 @@ With a wide range of scoreboard designs, it allows users to enhance their live s
 
 
 ## Usage 🚀
-To run the project its that easy to execute the start.bat file, a page will be hosted at the desired host and port, the default values are: http://127.0.0.1:5000
+To run the project its that easy to execute the [start.bat](start.bat) file, a page will be hosted at the desired host and port, the default values are: http://127.0.0.1:5000
+
 
 To specify a host, port or some more configurations they can be edited on [scoreboard.conf](scoreboard.conf)
 
