@@ -2,7 +2,7 @@ import os
 import json
 import uuid
 import secrets
-from flask import Flask, render_template, redirect, url_for, jsonify, request, session
+from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file
 from configuration import Config
 
 app = Flask(__name__)
@@ -18,14 +18,14 @@ def createID():
     return str(uuid.uuid4())
 
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/favicon.ico")
+def favicon():
+    return send_file("static/favicon.ico", mimetype="image/x-icon")
+
+
+@app.route("/")
 def index():
-    if request.method == "POST":
-        id = str(uuid.uuid4())
-
-        return redirect(url_for("match", id=id))
-
-    return render_template("index.html")
+    return redirect(url_for("show_sports"))
 
 
 @app.route("/sport")
