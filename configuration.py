@@ -8,7 +8,6 @@ class Config:
 
         self.host = "localhost"
         self.port = 5000
-        self.sport = "tenis-padel"
         self.debug = False
 
     def load(self):
@@ -24,14 +23,8 @@ class Config:
                         self.host = line.split("=")[1].strip()
                     if line.startswith("port"):
                         self.port = int(line.split("=")[1].strip())
-                    if line.startswith("sport"):
-                        self.sport = line.split("=")[1].strip()
                     if line.startswith("debug"):
                         self.debug = line.split("=")[1].strip()
-
-            if not os.path.exists(f"templates/{self.sport}"):
-                print(f"Sport '{self.sport}' not found in templates folder")
-                exit(1)
 
         print(f"Config loaded: {self.host}:{self.port}")
         if not self.debug:

@@ -28,8 +28,15 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/sport")
+def show_sports():
+    sports = [item.split(".")[0] for item in os.listdir("sports_config")]
+
+    return render_template("sports.html", sports=sports)
+
+
 @app.route("/sport/<sport>")
-def tennis_padel(sport):
+def redir_sport(sport):
     return f"<script>window.location.href = '/sport/{sport}/{createID()}';</script>"
 
 
@@ -39,12 +46,12 @@ def tennis_padel(sport):
 # -----------------------------
 @app.route("/sport/tennis-padel/<id>")
 def tennis_padel_backend(id):
-    return render_template(f"{conf.sport}/backend.html", id=id)
+    return render_template("tennis-padel/backend.html", id=id)
 
 
 @app.route("/sport/tennis-padel/<id>/show")
 def tennis_padel_frontend(id):
-    return render_template(f"{conf.sport}/frontend.html", id=id)
+    return render_template("tennis-padel/frontend.html", id=id)
 
 
 # -----------------------------
