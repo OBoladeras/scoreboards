@@ -14,7 +14,7 @@ With a wide range of scoreboard designs, it allows users to enhance their live s
 
 2. Clone the repository to your local machine using the following command:
     ```
-    git clone https://github.com/your-username/scoreboards.git
+    git clone https://github.com/OBoladeras/scoreboards.git
     ```
 
 3. Navigate to the project directory:
