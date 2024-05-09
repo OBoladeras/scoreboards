@@ -20,19 +20,19 @@
             <th>Team</th>
             <th>Set</th>
             <th>Points</th>
-            <th>Fouls</th>
+            <th>Changes</th>
         </tr>
         <tr>
             <th id="team1_name">Team1</th>
             <td id="team1_set">0</td>
             <td id="team1_points">0</td>
-            <td id="team1_fouls">0</td>
+            <td id="team1_change">0</td>
         </tr>
         <tr>
             <th id="team2_name">Team2</th>
             <td id="team2_set">0</td>
             <td id="team2_points">0</td>
-            <td id="team2_fouls">0</td>
+            <td id="team2_change">0</td>
         </tr>
     </table>
 
@@ -42,8 +42,17 @@
         <div class="player">
             <h2>Team 1</h2>
 
-            <h3 class="info">Name:</h3>
-            <input type="text" id="player1Input" onchange="updatePlayers()" placeholder="Name">
+            <div class="container">
+                <div>
+                    <h3 class="info">Name:</h3>
+                    <input type="text" id="player1Input" onchange="updatePlayers()" placeholder="Name">
+                </div>
+
+                <div>
+                    <h3 class="info">Logo:</h3>
+                    <input type="file" id="imageInput" onchange="updateImage()" accept="image/*">
+                </div>
+            </div>
 
             <h3 class="info">Points</h3>
             <div class="pointsSection">
