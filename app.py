@@ -33,6 +33,7 @@ def redir_sport(sport):
     return f"<script>window.location.href = '/sport/{sport}/{str(uuid.uuid4())}';</script>"
 
 
+# ------------------------------------------------------------------------------------
 # -----------------------------
 #   Tennis
 #   Padel
@@ -48,6 +49,19 @@ def tennis_padel_frontend(id):
 
 
 # -----------------------------
+#   Volleyball
+# -----------------------------
+@app.route("/sport/volleyball/<id>")
+def volleyball_backend(id):
+    return render_template("volleyball/backend.html", id=id, conf=conf)
+
+
+@app.route("/sport/volleyball/<id>/show")
+def volleyball_frontend(id):
+    return render_template("volleyball/frontend.html", id=id, conf=conf)
+
+
+# -----------------------------
 #  F1
 # -----------------------------
 @app.route("/sport/f1/<id>")
@@ -60,6 +74,7 @@ def f1_frontend(id):
     return render_template(f"f1/frontend.html", id=id, conf=conf)
 
 
+# ------------------------------------------------------------------------------------
 # -----------------------------
 #   API
 # -----------------------------
