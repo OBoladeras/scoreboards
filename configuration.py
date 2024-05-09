@@ -6,9 +6,9 @@ class Config:
     def __init__(self):
         self.config_file = "scoreboard.conf"
 
-        self.host = "localhost"
-        self.port = 5000
-        self.debug = False
+        if not os.path.exists("data.json"):
+            with open("data.json", "w") as f:
+                json.dump({}, f)
 
     def load(self):
         if not os.path.exists(self.config_file):
@@ -16,15 +16,15 @@ class Config:
         else:
             with open(self.config_file, "r") as f:
                 for line in f:
-                    if line.startswith("#"):
-                        continue
-
-                    if line.startswith("host"):
-                        self.host = line.split("=")[1].strip()
-                    if line.startswith("port"):
-                        self.port = int(line.split("=")[1].strip())
-                    if line.startswith("debug"):
-                        self.debug = line.split("=")[1].strip()
+                    if not line.startswith("#"):
+                        if line.startswith("host"):
+                            self.host = line.split("=")[1].strip()
+                        if line.startswith("port"):
+                            self.port = int(line.split("=")[1].strip())
+                        if line.startswith("debug"):
+                            self.debug = line.split("=")[1].strip()
+                        if line.startswith("scoreboard_center"):
+                            self.scoreboard_center = line.split("=")[1].strip()
 
         print(f"Config loaded: {self.host}:{self.port}")
         if not self.debug:

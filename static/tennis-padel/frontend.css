@@ -4,8 +4,8 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
 
     height: 100vh;
     font-size: 5.5rem;
@@ -49,6 +49,4 @@ body {
 
 .player {
     display: flex;
-    justify-content: center;
-    align-items: center;
 }

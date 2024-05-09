@@ -5,17 +5,10 @@ import secrets
 from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file
 from configuration import Config
 
+
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 conf = Config().load()
-
-if not os.path.exists("data.json"):
-    with open("data.json", "w") as f:
-        json.dump({}, f)
-
-
-def createID():
-    return str(uuid.uuid4())
 
 
 @app.route("/favicon.ico")
@@ -37,7 +30,7 @@ def show_sports():
 
 @app.route("/sport/<sport>")
 def redir_sport(sport):
-    return f"<script>window.location.href = '/sport/{sport}/{createID()}';</script>"
+    return f"<script>window.location.href = '/sport/{sport}/{str(uuid.uuid4())}';</script>"
 
 
 # -----------------------------
@@ -46,12 +39,12 @@ def redir_sport(sport):
 # -----------------------------
 @app.route("/sport/tennis-padel/<id>")
 def tennis_padel_backend(id):
-    return render_template("tennis-padel/backend.html", id=id)
+    return render_template("tennis-padel/backend.html", id=id, conf=conf)
 
 
 @app.route("/sport/tennis-padel/<id>/show")
 def tennis_padel_frontend(id):
-    return render_template("tennis-padel/frontend.html", id=id)
+    return render_template("tennis-padel/frontend.html", id=id, conf=conf)
 
 
 # -----------------------------
@@ -59,12 +52,12 @@ def tennis_padel_frontend(id):
 # -----------------------------
 @app.route("/sport/f1/<id>")
 def f1(id):
-    return render_template(f"f1/backend.html", id=id)
+    return render_template(f"f1/backend.html", id=id, conf=conf)
 
 
 @app.route("/sport/f1/<id>/show")
 def f1_frontend(id):
-    return render_template(f"f1/frontend.html", id=id)
+    return render_template(f"f1/frontend.html", id=id, conf=conf)
 
 
 # -----------------------------

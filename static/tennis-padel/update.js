@@ -19,7 +19,6 @@ function update() {
     }).then(function (response) {
         return response.json();
     }).then(function (data) {
-        console.log(data);
         name_j1.innerHTML = data.player1.name;
         points_j1.innerHTML = data.player1.points;
         set1_j1.innerHTML = data.player1.sets[0];
