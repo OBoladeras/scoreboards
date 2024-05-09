@@ -1,0 +1,12 @@
+{
+    "team1": {
+        "name": "Team 1",
+        "points": 0,
+        "sets": 0
+    },
+    "team2": {
+        "name": "Team 2",
+        "points": 0,
+        "sets": 0
+    }
+}
