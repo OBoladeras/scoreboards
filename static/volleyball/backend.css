@@ -1,0 +1,93 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0%;
+    padding: 0%;
+
+    font-size: 2rem;
+    color: black;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 8rem;
+}
+
+th {
+    padding: 10px;
+}
+
+
+span {
+    font-size: 3rem;
+}
+
+button {
+    min-width: 30px;
+    min-height: 30px;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    border: none;
+
+    font-size: 3rem;
+
+    cursor: pointer;
+}
+
+
+.player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pointsSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2rem;
+
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 0 10px;
+}
+
+input {
+    padding: 1rem;
+    font-size: 1rem;
+
+    border-radius: 15px;
+}
+
+.info {
+    margin-bottom: 0;
+}
+
+
+#successMessage {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.hide {
+    display: none;
+}

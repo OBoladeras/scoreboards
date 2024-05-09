@@ -10,11 +10,11 @@
     {% if conf['scoreboard_center'] == 'True' %}
     <link rel="stylesheet" href="/static/scoreboard_center.css">
     {% endif %}
+
+    <script type="text/javascript" src="/static/base.js"></script>
 </head>
 
 <body>
-    <script>id = '{{ id }}'</script>
-
     <div class="board">
         <div class="team">
             <div class="name" id="name_team1">Team 1</div>
@@ -25,8 +25,8 @@
 
             <div class="score">
                 <div>
-                    <div class="faults" id="set1_team1">0</div>
-                    <p>FAULTS</p>
+                    <div class="foults" id="set1_team1">0</div>
+                    <p>FOULTS</p>
                 </div>
                 <div>
                     <div class="points" id="set2_team1">0</div>
@@ -56,8 +56,8 @@
                     <p>POINTS</p>
                 </div>
                 <div>
-                    <div class="faults" id="set1_team1">0</div>
-                    <p>FAULTS</p>
+                    <div class="foults" id="set1_team1">0</div>
+                    <p>FOULTS</p>
                 </div>
             </div>
         </div>

@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-body {
-    font-family: 'Montserrat', sans-serif;
-}
-
 :root {
     --primary1: #A6D19C;
     --primary2: #D13B36;
@@ -12,4 +8,14 @@ body {
     --black: #121212;
     --white: #fcfcfc;
     --verde-claro: #E8F4E0;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+th,
+td {
+    text-align: center;
 }
