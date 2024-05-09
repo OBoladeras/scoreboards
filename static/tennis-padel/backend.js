@@ -1,36 +1,4 @@
 var currentSet = 1;
-var scoreboard = {};
-
-function pull() {
-    fetch('/api/tennis-padel/' + id, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' },
-    }).catch(function (error) {
-        alert('Request failed', error);
-    }).then(function (response) {
-        return response.json();
-    }).then(function (data) {
-        scoreboard = data;
-    });
-}
-
-function push() {
-    fetch('/api/tennis-padel/' + id, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(scoreboard),
-    }).catch(function (error) {
-        alert('Request failed', error);
-    }).then(function (response) {
-        const successMessage = document.getElementById('successMessage');
-        successMessage.style.display = 'block';
-        setTimeout(() => {
-            successMessage.style.display = 'none';
-        }, 3000);
-    });
-}
 
 
 function changePoitns(id, add = true) {
