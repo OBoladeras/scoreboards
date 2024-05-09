@@ -8,99 +8,70 @@ body {
     padding: 0%;
 
     font-size: 2rem;
-    background-color: var(--primary3);
-    color: #fff;
+    color: black;
 }
 
 .container {
     display: flex;
-    justify-content: center;
-}
-
-.setDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.playersDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 35px;
-
-    padding: 50px;
-}
-
-.buttonsDiv {
-    display: flex;
-    gap: 35px;
-}
-
-.block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 
-    width: 200px;
+    gap: 8rem;
 }
 
 th {
     padding: 10px;
 }
 
+
+span {
+    font-size: 3rem;
+}
+
 button {
     min-width: 30px;
     min-height: 30px;
-    margin: 10px;
     border-radius: 5px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background: #A6D19C;
-    color: #fff;
+    background-color: transparent;
     border: none;
 
-    font-size: 1.5rem;
-    scale: 2;
+    font-size: 3rem;
 
     cursor: pointer;
 }
 
+
+.player {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pointsSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2rem;
+
+    border: 3px solid black;
+    border-radius: 15px;
+    padding: 0 10px;
+}
+
 input {
-    padding: 10px;
-    font-size: 2rem;
+    padding: 1rem;
+    font-size: 1rem;
+
+    border-radius: 15px;
 }
 
-.spacer {
-    height: 100px;
-    width: 100px;
-}
-
-
-@media (max-width: 1000px) {
-    body {
-        font-size: 2.5rem;
-    }
-
-    .container {
-        flex-direction: column;
-        gap: 150px;
-    }
-
-    .playersDiv {
-        gap: 200px;
-    }
-
-    .block {
-        scale: 1.5;
-    }
-
-    button {
-        scale: 2.5;
-    }
+.info {
+    margin-bottom: 0;
 }

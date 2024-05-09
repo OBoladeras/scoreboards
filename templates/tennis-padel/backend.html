@@ -12,7 +12,8 @@
 
 <body>
     <br>
-    <button onclick="window.open(window.location.href + '/show', '_blank')">Open Scoreboard</button>
+    <button onclick="window.open(window.location.href + '/show', '_blank')"
+        style="background-color: var(--primary1);">Open Scoreboard</button>
     <br>
     <table>
         <tr>
@@ -38,69 +39,63 @@
         </tr>
     </table>
 
+    <br><br>
+
+    <h3 class="info">Current Set:</h3>
+    <div class="pointsSection">
+        <button onclick="workingSet(false)">-</button>
+        <span id="set">1</span>
+        <button onclick="workingSet(true)">+</button>
+    </div>
+
     <div class="container">
-        <div class="setDiv">
-            <h1>Puntos</h1>
-            <div class="playersDiv">
-                <div class="block">
-                    <h2>J1:
-                        <span id="pointsJ1">0</span>
-                    </h2>
-                    <div class="buttonsDiv">
-                        <button onclick="changePoitns('pointsJ1', false)">-</button>
-                        <button onclick="changePoitns('pointsJ1', true)">+</button>
-                    </div>
-                </div>
-                <div class="block">
-                    <h2>J2:
-                        <span id="pointsJ2">0</span>
-                    </h2>
-                    <div class="buttonsDiv">
-                        <button onclick="changePoitns('pointsJ2', false)">-</button>
-                        <button onclick="changePoitns('pointsJ2', true)">+</button>
-                    </div>
-                </div>
+        <div class="player">
+            <h2>Player 1</h2>
+
+            <h3 class="info">Name:</h3>
+            <input type="text" id="player1Input" onchange="updatePlayers()">
+
+            <h3 class="info">Points</h3>
+            <div class="pointsSection">
+                <button onclick="changePoitns('pointsJ1', false)">-</button>
+                <span id="pointsJ1">0</span>
+                <button onclick="changePoitns('pointsJ1', true)">+</button>
+            </div>
+
+            <h3 class="info">Sets</h3>
+            <div class="pointsSection">
+                <button onclick="changeSet('setsJ1', false)">-</button>
+                <span id="setsJ1">0</span>
+                <button onclick="changeSet('setsJ1', true)">+</button>
             </div>
         </div>
-        <div class="setDiv">
-            <h1>Set
-                <span id="set">1</span>
-            </h1>
-            <div class="buttonsDiv">
-                <button onclick="workingSet(false)">-</button>
-                <button onclick="workingSet(true)">+</button>
+
+        <div class="player">
+            <h2>Player 2</h2>
+
+            <h3 class="info">Name:</h3>
+            <input type="text" id="player2Input" onchange="updatePlayers()">
+
+            <h3 class="info">Points</h3>
+            <div class="pointsSection">
+                <button onclick="changePoitns('pointsJ2', false)">-</button>
+                <span id="pointsJ2">0</span>
+                <button onclick="changePoitns('pointsJ2', true)">+</button>
             </div>
-            <div class="playersDiv">
-                <div class="block">
-                    <h2>J1:
-                        <span id="setsJ1">0</span>
-                    </h2>
-                    <div class="buttonsDiv">
-                        <button onclick="changeSet('setsJ1', false)">-</button>
-                        <button onclick="changeSet('setsJ1', true)">+</button>
-                    </div>
-                </div>
-                <div class="block">
-                    <h2>J2:
-                        <span id="setsJ2">0</span>
-                    </h2>
-                    <div class="buttonsDiv">
-                        <button onclick="changeSet('setsJ2', false)">-</button>
-                        <button onclick="changeSet('setsJ2', true)">+</button>
-                    </div>
-                </div>
+
+            <h3 class="info">Sets</h3>
+            <div class="pointsSection">
+                <button onclick="changeSet('setsJ2', false)">-</button>
+                <span id="setsJ2">0</span>
+                <button onclick="changeSet('setsJ2', true)">+</button>
             </div>
         </div>
     </div>
 
+    <br><br>
+    <button onclick="push()" style="background-color: var(--primary1);">Aplicar cambios</button>
+    <br><br>
 
-    <h2>Jugador 1</h2>
-    <input type="text" id="player1Input" onchange="updatePlayers()">
-    <h2>Jugador 2</h2>
-    <input type="text" id="player2Input" onchange="updatePlayers()">
-    <br>
-    <button onclick="push()">Aplicar cambios</button>
-    <div class="spacer"></div>
 
     <script>
         pull();
