@@ -75,3 +75,19 @@ input {
 .info {
     margin-bottom: 0;
 }
+
+
+#successMessage {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.hide {
+    display: none;
+}

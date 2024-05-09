@@ -53,7 +53,7 @@
             <h2>Player 1</h2>
 
             <h3 class="info">Name:</h3>
-            <input type="text" id="player1Input" onchange="updatePlayers()">
+            <input type="text" id="player1Input" onchange="updatePlayers()" placeholder="Name">
 
             <h3 class="info">Points</h3>
             <div class="pointsSection">
@@ -74,7 +74,7 @@
             <h2>Player 2</h2>
 
             <h3 class="info">Name:</h3>
-            <input type="text" id="player2Input" onchange="updatePlayers()">
+            <input type="text" id="player2Input" onchange="updatePlayers()" placeholder="Name">
 
             <h3 class="info">Points</h3>
             <div class="pointsSection">
@@ -95,6 +95,8 @@
     <br><br>
     <button onclick="push()" style="background-color: var(--primary1);">Aplicar cambios</button>
     <br><br>
+
+    <div id="successMessage" class="hide">Updated!</div>
 
 
     <script>

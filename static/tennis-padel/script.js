@@ -22,6 +22,13 @@ function push() {
         },
         body: JSON.stringify(scoreboard),
     })
+
+    const successMessage = document.getElementById('successMessage');
+    successMessage.style.display = 'block';
+    setTimeout(() => {
+        successMessage.style.display = 'none';
+    }, 3000);
+
 }
 
 
