@@ -21,14 +21,15 @@ function push() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(scoreboard),
-    })
-
-    const successMessage = document.getElementById('successMessage');
-    successMessage.style.display = 'block';
-    setTimeout(() => {
-        successMessage.style.display = 'none';
-    }, 3000);
-
+    }).catch(function (error) {
+        alert('Request failed', error);
+    }).then(function (response) {
+        const successMessage = document.getElementById('successMessage');
+        successMessage.style.display = 'block';
+        setTimeout(() => {
+            successMessage.style.display = 'none';
+        }, 3000);
+    });
 }
 
 
