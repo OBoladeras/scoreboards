@@ -1,154 +1,63 @@
 var currentSet = 1;
 
 
-function changePoitns(id, add = true) {
-    span = document.getElementById(id);
+function add(item) {
+    var span = item.parentElement.children[1];
+    var team = item.parentElement.parentElement.getAttribute('team');
+    var type = item.parentElement.getAttribute('type');
 
-    if (add) {
-        if (span.innerHTML == "av") {
-            span.innerHTML = 'av';
-        }
-        else {
-            current = parseInt(span.innerHTML);
-            if (current == 0) {
-                span.innerHTML = 15;
-            } else if (current == 15) {
-                span.innerHTML = 30;
-            } else if (current == 30) {
-                span.innerHTML = 40;
-            } else if (current == 40) {
-                span.innerHTML = "av";
-            }
-        }
-    } else {
-        if (span.innerHTML == "av") {
-            span.innerHTML = 40;
-        }
-        else {
-            current = parseInt(span.innerHTML);
-            if (current == 40) {
-                span.innerHTML = 30;
-            } else if (current == 30) {
-                span.innerHTML = 15;
-            } else if (current == 15) {
-                span.innerHTML = 0;
-            }
-        }
-    }
+    scoreboard[team][type] = parseInt(span.innerHTML) + 1;
+    span.innerHTML = scoreboard[team][type];
 
-    if (id == "pointsJ1") {
-        scoreboard.player1.points = span.innerHTML;
+    if (type == 'points') {
+        push();
     }
-    else {
-        scoreboard.player2.points = span.innerHTML;
-    }
-
-    update();
 }
 
+function subtract(item) {
+    var span = item.parentElement.children[1];
+    var team = item.parentElement.parentElement.getAttribute('team');
+    var type = item.parentElement.getAttribute('type');
 
-function workingSet(add = true) {
-    span = document.getElementById('set');
-    currentSet = parseInt(span.innerHTML);
-
-    if (add) {
-        if (currentSet < 3) {
-            currentSet++;
-            span.innerHTML = currentSet;
-        }
-    }
-    else {
-        if (currentSet > 1) {
-            currentSet--;
-            span.innerHTML = currentSet;
-        }
+    if (parseInt(span.innerHTML) == 0) {
+        return;
     }
 
-    setsJ1 = document.getElementById('setsJ1');
-    setsJ2 = document.getElementById('setsJ2');
+    scoreboard[team][type] = parseInt(span.innerHTML) - 1;
+    span.innerHTML = scoreboard[team][type];
 
-    setsJ1.innerHTML = scoreboard.player1.sets[currentSet - 1];
-    setsJ2.innerHTML = scoreboard.player2.sets[currentSet - 1];
+    if (type == 'points') {
+        push();
+    }
 }
 
-function changeSet(id, add = true) {
-    span = document.getElementById(id);
-    set = parseInt(span.innerHTML);
+function update() {
+    // document.getElementById('table_name_team1').innerHTML = scoreboard['team1']['name'];
+    // document.getElementById('table_name_team2').innerHTML = scoreboard['team2']['name'];
 
-    if (add) {
-        if (set < 6) {
-            set++;
-            span.innerHTML = set;
-        }
-    }
-    else {
-        if (set > 0) {
-            set--;
-            span.innerHTML = set;
-        }
-    }
+    // document.getElementById('table_sets_team1').innerHTML = scoreboard['team1']['sets'];
+    // document.getElementById('table_sets_team2').innerHTML = scoreboard['team2']['sets'];
 
-    if (id == "setsJ1") {
-        scoreboard.player1.sets[currentSet - 1] = set;
-    }
-    else {
-        scoreboard.player2.sets[currentSet - 1] = set;
-    }
+    // document.getElementById('table_points_team1').innerHTML = scoreboard['team1']['points'];
+    // document.getElementById('table_points_team2').innerHTML = scoreboard['team2']['points'];
 
-    update();
-}
+    // document.getElementById('table_changes_team1').innerHTML = scoreboard['team1']['changes'];
+    // document.getElementById('table_changes_team2').innerHTML = scoreboard['team2']['changes'];
 
+    board = document.getElementById('board');
 
-function updatePlayers() {
-    player1 = document.getElementById('player1');
-    player2 = document.getElementById('player2');
-    player1Input = document.getElementById('player1Input');
-    player2Input = document.getElementById('player2Input');
+    team1 = board.children[0];
+    team2 = board.children[1];
 
-    player1.innerHTML = player1Input.value;
-    player2.innerHTML = player2Input.value;
+    console.log(team1.children[0]);
 
-    scoreboard.player1.name = player1Input.value;
-    scoreboard.player2.name = player2Input.value;
-}
+    team1.children[0].innerHTML = scoreboard['team1']['name'];
+    team1.children[2].children[1].innerHTML = scoreboard['team1']['sets'];
+    team1.children[4].children[1].innerHTML = scoreboard['team1']['points'];
+    team1.children[6].children[1].innerHTML = scoreboard['team1']['changes'];
 
-
-function update(first = false) {
-    if (first) {
-        pointsJ1 = document.getElementById('pointsJ1');
-        pointsJ2 = document.getElementById('pointsJ2');
-
-        pointsJ1.innerHTML = scoreboard.player1.points;
-        pointsJ2.innerHTML = scoreboard.player2.points;
-
-
-        setsJ1 = document.getElementById('setsJ1');
-        setsJ2 = document.getElementById('setsJ2');
-
-        setsJ1.innerHTML = scoreboard.player1.sets[0];
-        setsJ2.innerHTML = scoreboard.player2.sets[0];
-    }
-
-    player1 = document.getElementById('player1');
-    player2 = document.getElementById('player2');
-    marcador_set1_j1 = document.getElementById('marcador_set1_j1');
-    marcador_set2_j1 = document.getElementById('marcador_set2_j1');
-    marcador_set3_j1 = document.getElementById('marcador_set3_j1');
-    marcador_set1_j2 = document.getElementById('marcador_set1_j2');
-    marcador_set2_j2 = document.getElementById('marcador_set2_j2');
-    marcador_set3_j2 = document.getElementById('marcador_set3_j2');
-    marcador_punto_j1 = document.getElementById('marcador_punto_j1');
-    marcador_punto_j2 = document.getElementById('marcador_punto_j2');
-
-
-    player1.innerHTML = scoreboard.player1.name;
-    player2.innerHTML = scoreboard.player2.name;
-    marcador_set1_j1.innerHTML = scoreboard.player1.sets[0];
-    marcador_set2_j1.innerHTML = scoreboard.player1.sets[1];
-    marcador_set3_j1.innerHTML = scoreboard.player1.sets[2];
-    marcador_set1_j2.innerHTML = scoreboard.player2.sets[0];
-    marcador_set2_j2.innerHTML = scoreboard.player2.sets[1];
-    marcador_set3_j2.innerHTML = scoreboard.player2.sets[2];
-    marcador_punto_j1.innerHTML = scoreboard.player1.points;
-    marcador_punto_j2.innerHTML = scoreboard.player2.points;
+    team2.children[0].innerHTML = scoreboard['team2']['name'];
+    team2.children[2].children[1].innerHTML = scoreboard['team2']['sets'];
+    team2.children[4].children[1].innerHTML = scoreboard['team2']['points'];
+    team2.children[6].children[1].innerHTML = scoreboard['team2']['changes'];
 }

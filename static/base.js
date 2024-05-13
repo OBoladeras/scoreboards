@@ -42,6 +42,18 @@ function push(message = true) {
 }
 
 
+function previewLogo(event, previewId) {
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function () {
+        var dataURL = reader.result;
+        var logoPreview = document.getElementById(previewId);
+        logoPreview.src = dataURL;
+        logoPreview.style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+}
+
 
 // setTimeout(function () {
 //     window.location.reload();

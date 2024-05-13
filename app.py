@@ -2,13 +2,35 @@ import os
 import json
 import uuid
 import secrets
-from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file
 from configuration import Config
+from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file
 
 
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 conf = Config().load()
+
+
+def createBaseData(id, sport):
+    # Check if sport exists in data.json
+    with open("data.json", "r") as f:
+        try:
+            jsonData = json.load(f)
+        except json.JSONDecodeError:
+            jsonData = {}
+
+        if sport not in jsonData:
+            jsonData[sport] = {}
+
+        if id not in jsonData[sport]:
+            base = Config().sport_config(sport)
+
+            if not base:
+                exit()
+            jsonData[sport][id] = base
+
+    with open("data.json", "w") as f:
+        json.dump(jsonData, f)
 
 
 @app.route("/favicon.ico")
@@ -40,12 +62,12 @@ def redir_sport(sport):
 # -----------------------------
 @app.route("/sport/tennis-padel/<id>")
 def tennis_padel_backend(id):
-    return render_template("tennis-padel/backend.html", id=id, conf=conf)
+    return render_template("tennis-padel/backend.html", conf=conf)
 
 
 @app.route("/sport/tennis-padel/<id>/show")
 def tennis_padel_frontend(id):
-    return render_template("tennis-padel/frontend.html", id=id, conf=conf)
+    return render_template("tennis-padel/frontend.html", conf=conf)
 
 
 # -----------------------------
@@ -53,12 +75,43 @@ def tennis_padel_frontend(id):
 # -----------------------------
 @app.route("/sport/volleyball/<id>")
 def volleyball_backend(id):
-    return render_template("volleyball/backend.html", id=id, conf=conf)
+    return render_template("volleyball/backend.html", conf=conf)
+
+
+@app.route("/sport/volleyball/<id>/setup", methods=["GET", "POST"])
+def volleyball_setup(id):
+    if request.method == "POST":
+        createBaseData(id, "volleyball")
+
+        team1 = request.form.get("team1")
+        team2 = request.form.get("team2")
+
+        logo1 = request.files.get("logo1")
+        logo2 = request.files.get("logo2")
+
+        if logo1:
+            logo1.save(f"static/volleyball/logos/{logo1.filename}")
+        if logo2:
+            logo2.save(f"static/volleyball/logos/{logo2.filename}")
+
+        with open("data.json", "r") as f:
+            jsonData = json.load(f)
+            jsonData["volleyball"][id]["team1"]["name"] = team1
+            jsonData["volleyball"][id]["team2"]["name"] = team2
+            jsonData["volleyball"][id]["team1"]["logo"] = logo1.filename if logo1 else None
+            jsonData["volleyball"][id]["team2"]["logo"] = logo2.filename if logo2 else None
+
+        with open("data.json", "w") as f:
+            json.dump(jsonData, f)
+
+        return redirect(url_for("volleyball_backend", id=id))
+
+    return render_template("volleyball/setup.html", conf=conf)
 
 
 @app.route("/sport/volleyball/<id>/show")
 def volleyball_frontend(id):
-    return render_template("volleyball/frontend.html", id=id, conf=conf)
+    return render_template("volleyball/frontend.html", conf=conf)
 
 
 # -----------------------------
@@ -66,12 +119,12 @@ def volleyball_frontend(id):
 # -----------------------------
 @app.route("/sport/f1/<id>")
 def f1(id):
-    return render_template(f"f1/backend.html", id=id, conf=conf)
+    return render_template(f"f1/backend.html", conf=conf)
 
 
 @app.route("/sport/f1/<id>/show")
 def f1_frontend(id):
-    return render_template(f"f1/frontend.html", id=id, conf=conf)
+    return render_template(f"f1/frontend.html", conf=conf)
 
 
 # ------------------------------------------------------------------------------------
@@ -80,25 +133,7 @@ def f1_frontend(id):
 # -----------------------------
 @app.route("/api/<sport>/<id>", methods=["GET", "POST"])
 def get(sport, id):
-    # Check if sport exists in data.json
-    with open("data.json", "r") as f:
-        try:
-            jsonData = json.load(f)
-        except json.JSONDecodeError:
-            jsonData = {}
-
-        if sport not in jsonData:
-            jsonData[sport] = {}
-
-        if id not in jsonData[sport]:
-            base = Config().sport_config(sport)
-
-            if not base:
-                exit()
-            jsonData[sport][id] = base
-
-    with open("data.json", "w") as f:
-        json.dump(jsonData, f)
+    createBaseData(id, sport)
 
     if request.method == "GET":
         with open("data.json", "r") as f:

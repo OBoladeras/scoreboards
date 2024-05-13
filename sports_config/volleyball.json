@@ -2,14 +2,14 @@
     "team1": {
         "name": "Team 1",
         "logo": "",
-
+        "changes": 0,
         "points": 0,
         "sets": 0
     },
     "team2": {
         "name": "Team 2",
         "logo": "",
-
+        "changes": 0,
         "points": 0,
         "sets": 0
     }

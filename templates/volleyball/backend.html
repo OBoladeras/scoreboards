@@ -15,7 +15,7 @@
     <button onclick="window.open(window.location.href + '/show', '_blank')"
         style="background-color: var(--primary1);">Open Scoreboard</button>
     <br>
-    <table>
+    <!-- <table>
         <tr>
             <th>Team</th>
             <th>Set</th>
@@ -23,70 +23,73 @@
             <th>Changes</th>
         </tr>
         <tr>
-            <th id="team1_name">Team1</th>
-            <td id="team1_set">0</td>
-            <td id="team1_points">0</td>
-            <td id="team1_change">0</td>
+            <th id="table_name_team1">Team1</th>
+            <td id="table_changes_team1">0</td>
+            <td id="table_points_team1">0</td>
+            <td id="table_sets_team1">0</td>
         </tr>
         <tr>
-            <th id="team2_name">Team2</th>
-            <td id="team2_set">0</td>
-            <td id="team2_points">0</td>
-            <td id="team2_change">0</td>
+            <th id="table_name_team2">Team2</th>
+            <td id="table_changes_team2">0</td>
+            <td id="table_points_team2">0</td>
+            <td id="table_sets_team2">0</td>
         </tr>
-    </table>
+    </table> 
 
-    <br><br>
+    <br><br> -->
 
-    <div class="container">
-        <div class="player">
+    <div class="container" id="board">
+        <div class="player" team="team1">
             <h2>Team 1</h2>
 
-            <div class="container">
-                <div>
-                    <h3 class="info">Name:</h3>
-                    <input type="text" id="player1Input" onchange="updatePlayers()" placeholder="Name">
-                </div>
 
-                <div>
-                    <h3 class="info">Logo:</h3>
-                    <input type="file" id="imageInput" onchange="updateImage()" accept="image/*">
-                </div>
+            <h3 class="info">Sets</h3>
+            <div class="pointsSection" type="sets">
+                <button onclick="subtract(this)">-</button>
+                <span>0</span>
+                <button onclick="add(this)">+</button>
             </div>
 
             <h3 class="info">Points</h3>
-            <div class="pointsSection">
-                <button onclick="changePoitns('pointsJ1', false)">-</button>
-                <span id="pointsJ1">0</span>
-                <button onclick="changePoitns('pointsJ1', true)">+</button>
+            <div class="pointsSection" type="points">
+                <button onclick="subtract(this)">-</button>
+                <span>0</span>
+                <button onclick="add(this)">+</button>
             </div>
 
-            <h3 class="info">Sets</h3>
-            <div class="pointsSection">
-                <button onclick="changeSet('setsJ1', false)">-</button>
-                <span id="setsJ1">0</span>
-                <button onclick="changeSet('setsJ1', true)">+</button>
+
+            <h3 class="info">Changes</h3>
+            <div class="pointsSection" type="changes">
+                <button onclick="subtract(this)">-</button>
+                <span>0</span>
+                <button onclick="add(this)">+</button>
             </div>
         </div>
 
-        <div class="player">
+        <div class="player" team="team2">
             <h2>Team 2</h2>
 
-            <h3 class="info">Name:</h3>
-            <input type="text" id="player2Input" onchange="updatePlayers()" placeholder="Name">
-
-            <h3 class="info">Points</h3>
-            <div class="pointsSection">
-                <button onclick="changePoitns('pointsJ2', false)">-</button>
-                <span id="pointsJ2">0</span>
-                <button onclick="changePoitns('pointsJ2', true)">+</button>
-            </div>
 
             <h3 class="info">Sets</h3>
-            <div class="pointsSection">
-                <button onclick="changeSet('setsJ2', false)">-</button>
-                <span id="setsJ2">0</span>
-                <button onclick="changeSet('setsJ2', true)">+</button>
+            <div class="pointsSection" type="sets">
+                <button onclick="subtract(this)">-</button>
+                <span>0</span>
+                <button onclick="add(this)">+</button>
+            </div>
+
+
+            <h3 class="info">Points</h3>
+            <div class="pointsSection" type="points">
+                <button onclick="subtract(this)">-</button>
+                <span>0</span>
+                <button onclick="add(this)">+</button>
+            </div>
+
+            <h3 class="info">Changes</h3>
+            <div class="pointsSection" type="changes">
+                <button onclick="subtract(this)">-</button>
+                <span>0</span>
+                <button onclick="add(this)">+</button>
             </div>
         </div>
     </div>
@@ -101,7 +104,7 @@
     <script>
         pull();
         setTimeout(function () {
-            update(true);
+            update();
         }, 500);
     </script>
 </body>

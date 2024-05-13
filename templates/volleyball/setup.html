@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Backend - Volleyball</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/volleyball/backend.css">
+
+    <script type="text/javascript" src="/static/base.js"></script>
+    <style>
+        #logo-preview1,
+        #logo-preview2 {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <br>
+    <button onclick="window.open(window.location.href + '/show', '_blank')" style="background-color: var(--primary1);">
+        Open Scoreboard
+    </button>
+    <br><br>
+    <form method="post" enctype="multipart/form-data">
+        <div class="container">
+
+            <div class="player">
+                <h2>Team 1</h2>
+
+                <h3 class="info">Name:</h3>
+                <input type="text" id="player1Input" placeholder="Name" name="team1">
+
+                <h3 class="info">Logo:</h3>
+                <input type="file" id="imageInput1" name="logo1" accept="image/*"
+                    onchange="previewLogo(event, 'logo-preview1')">
+                <img id="logo-preview1" src="" alt="Preview" style="display:none;">
+            </div>
+
+
+            <div class="player">
+                <h2>Team 2</h2>
+
+                <h3 class="info">Name:</h3>
+                <input type="text" id="player2Input" placeholder="Name" name="team2">
+
+                <h3 class="info">Logo:</h3>
+                <input type="file" id="imageInput2" name="logo2" accept="image/*"
+                    onchange="previewLogo(event, 'logo-preview2')">
+                <img id="logo-preview2" src="" alt="Preview" style="display:none;">
+            </div>
+
+        </div>
+        <br><br>
+        <button style="background-color: var(--primary1);" type="submit">Update</button>
+        <br><br>
+    </form>
+
+    <div id="successMessage" class="hide">Updated!</div>
+</body>
+
+</html>
