@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scoreboard - Tennis / Padel</title>
+    <link rel="stylesheet" href="/static/tennis-padel/frontend.css">
+</head>
+
+<body>
+    <div class="player">
+        <div class="name" id="name_j1">Player 1</div>
+        <div class="set" id="set1_j1">0</div>
+        <div class="set" id="set2_j1">0</div>
+        <div class="set" id="set3_j1">0</div>
+        <div class="points" id="points_j1">0</div>
+    </div>
+
+    <div class="player">
+        <div class="name" id="name_j2">Player 2</div>
+        <div class="set" id="set1_j2">0</div>
+        <div class="set" id="set2_j2">0</div>
+        <div class="set" id="set3_j2">0</div>
+        <div class="points" id="points_j2">0</div>
+    </div>
+
+    <!-- config.html -->
+
+<!-- Basic files from all pages -->
+<link rel="stylesheet" href="/static/style.css">
+<script type="text/javascript" src="/static/base.js"></script>
+
+
+<!-- Files for each sport -->
+<script>
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = `/static/${sport}/frontend.js`;
+
+    document.head.appendChild(script);
+</script>
+
+
+<!-- Files if config requires -->
+
+<link rel="stylesheet" href="/static/scoreboard_center.css">
+
+
+
+
+</body>
+
+</html>

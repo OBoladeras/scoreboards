@@ -3,12 +3,33 @@ import json
 import uuid
 import secrets
 from configuration import Config
-from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file
+from flask import Flask, render_template, redirect, url_for, jsonify, request, send_file, make_response
+from weasyprint import HTML, CSS
 
 
 app = Flask(__name__)
 app.secret_key = secrets.token_urlsafe(16)
 conf = Config().load()
+
+
+
+
+@app.route('/export_as_png')
+def export_as_png():
+    rendered_html = render_template('tennis-padel/frontend.html')
+
+    pdf = HTML(string=rendered_html).write_pdf()
+
+    png = pdf_to_png(pdf)
+
+    response = make_response(png)
+    response.headers['Content-Type'] = 'image/png'
+    response.headers['Content-Disposition'] = 'attachment; filename=exported_page.png'
+    return response
+
+def pdf_to_png(pdf_bytes):
+    return HTML(string=pdf_bytes).write_png()
+
 
 
 def createBaseData(id, sport):
