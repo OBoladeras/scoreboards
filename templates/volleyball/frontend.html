@@ -3,20 +3,11 @@
 
 <head>
     <title>Scoreboard - Volleyball</title>
-
-    <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/volleyball/frontend.css">
-
-    {% if conf['scoreboard_center'] == 'True' %}
-    <link rel="stylesheet" href="/static/scoreboard_center.css">
-    {% endif %}
-
-    <script type="text/javascript" src="/static/base.js"></script>
-    <script type="text/javascript" src="/static/volleyball/frontend.js"></script>
 </head>
 
 <body>
-    <div class="board">
+    <div class="board" id="board">
         <div class="team">
             <div class="name" id="name_team1">Team 1</div>
             <div class="logo">
@@ -64,7 +55,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="/static/volleyball/frontend.js"></script>
+    {% include 'config.html' %}
 </body>
 
 </html>

@@ -7,7 +7,7 @@ id = urlParts[sportPosition + 2];
 var url = `/api/${sport}/${id}`
 var scoreboard = {};
 
-
+// Network functions
 function pull() {
     fetch(url, {
         method: 'get',
@@ -41,7 +41,23 @@ function push(message = true) {
     });
 }
 
+// Config functions
+function scaleToResolution(width, height) {
+    var board = document.getElementById("board");
 
+
+    h = (height * board.offsetWidth) / width - 48;
+    board.style.height = h + "px";
+
+
+    var scaleX = width / board.offsetWidth;
+    var scaleY = height / board.offsetHeight;
+    var scale = Math.min(scaleX, scaleY);
+
+    board.style.transform = "scale(" + scale + ")";
+}
+
+// Setup functions
 function previewLogo(event, previewId) {
     var input = event.target;
     var reader = new FileReader();

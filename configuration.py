@@ -25,6 +25,8 @@ class Config:
                             self.debug = line.split("=")[1].strip()
                         if line.startswith("scoreboard_center"):
                             self.scoreboard_center = line.split("=")[1].strip()
+                        if line.startswith("scoreboard_res"):
+                            self.scoreboard_res = line.split("=")[1].strip().split("x")
 
         print(f"Config loaded: {self.host}:{self.port}")
         if not self.debug:

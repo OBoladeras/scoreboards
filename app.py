@@ -52,6 +52,9 @@ def show_sports():
 
 @app.route("/sport/<sport>")
 def redir_sport(sport):
+    if sport in ["volleyball"]:
+        return f"<script>window.location.href = '/sport/{sport}/{str(uuid.uuid4())}/setup';</script>"
+
     return f"<script>window.location.href = '/sport/{sport}/{str(uuid.uuid4())}';</script>"
 
 
