@@ -8,6 +8,8 @@
     --black: #121212;
     --white: #fcfcfc;
     --verde-claro: #E8F4E0;
+
+    background-color: transparent;
 }
 
 
@@ -19,6 +21,7 @@ th,
 td {
     text-align: center;
 }
+
 button {
     user-select: none;
 }
