@@ -9,5 +9,5 @@ for /f "tokens=1,* delims==" %%a in ('findstr /r "^host= ^port=" "%config_file%"
 )
 
 @echo off
-python app.py
+start python app.py
 start "" "http://%host%:%port%/sport"
